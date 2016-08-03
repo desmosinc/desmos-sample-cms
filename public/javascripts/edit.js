@@ -8,6 +8,15 @@ $(function() {
   calc.setState(graphData.data.state);
   $('.progress').remove();
   
+  // Graph options to populate the checkboxes correctly
+  var options = JSON.parse(graphData.data.options + '');
+  
+  for (var prop in options) {
+    if (options.hasOwnProperty(prop)) {
+      $('#' + prop).prop('checked', options[prop]);
+    }
+  }
+  
   // Cache some selectors for getting metadata and graph options
   var $title = $('#title'),
       $public = $('#public'),
@@ -55,7 +64,7 @@ $(function() {
     var options = getOptions();
     
     $.ajax({
-      url: '/graphs/udpate/' + graphData.data._id,
+      url: '/graphs/udpate/' + graphData._id,
       method: 'PUT',
       state: state,
       options: options,
