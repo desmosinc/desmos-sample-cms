@@ -67,6 +67,17 @@ router.get('/edit/:id', function(req, res, next) {
     });
 });
 
+// Delete a particular graph
+router.get('/delete/:id', function(req, res, next) {
+  var db = req.db;
+  var collection = db.get('graphs');
+  var objID = monk.id(req.params.id);
+  collection.findOneAndDelete({_id: objID})
+    .then(function(doc) {
+      res.redirect('/graphs/');
+    });
+});
+
 // Show a particular graph
 router.get('/:id', function(req, res, next) {
   var db = req.db;
