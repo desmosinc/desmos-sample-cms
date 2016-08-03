@@ -9,11 +9,11 @@ block content
           .row
             each graph in graphs.slice(i, i+3)
               .col.s12.m4
-                .card.small.indigo.lighten-2
+                .card.small.hoverable.indigo.lighten-2
                   .card-image
                     img.index-image(src=graph.data.thumbnail)
                   .card-content.white-text
-                    span.card-title= graph.data.title
+                    span.card-title.truncate= graph.data.title
                   .card-action
                     a(href='graphs/#{graph._id}') Preview
                     a(href='graphs/edit/#{graph._id}') Edit
