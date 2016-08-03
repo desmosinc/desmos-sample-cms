@@ -4,6 +4,11 @@
   height: 93%;
 }
 
+nav {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .bottom-right {
   position: absolute;
   bottom: 24px;
