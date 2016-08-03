@@ -1,17 +1,21 @@
 extends ../layout
 
-block content
+block content        
   .container
-    ul.collection.with-header
-      li.collection-header
-        h4.center My Graphs
-      if graphs
-        each graph in graphs
-          a.collection-item(href='/graphs/#{graph._id}')= graph.data.title
-      else
-        li.collection-item Looks like you don't have any saved graphs yet...
-    
-    div.bottom-right
-      a.btn-floating.btn-large.waves-effect.waves-light.red(href='/graphs/new')
-        i.material-icons add
-    
+    h4.center My Graphs
+    if graphs
+      each v, i in graphs
+        if (i%2 === 0)
+          .row
+            each graph in graphs.slice(i, i+2)
+              .col.s12.m6
+                .card.indigo.lighten-2
+                  .card-content.white-text
+                    span.card-title= graph.data.title
+                  .card-action
+                    a(href='graphs/#{graph._id}') Preview
+                    a(href='graphs/edit/#{graph._id}') Edit
+                    
+  .bottom-right
+    a.btn-floating.btn-large.waves-effect.waves-light.pink(href='/graphs/new')
+      i.material-icons add
