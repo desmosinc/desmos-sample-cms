@@ -18,6 +18,10 @@ nav {
   right: 24px;
 }
 
+.question-template {
+  display: none;
+}
+
 /*input[type=text]:focus:not([readonly]) {
   border-bottom: 1px solid #ff4081;
   box-shadow: 0 1px 0 0 #ff4081;
