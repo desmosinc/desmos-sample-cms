@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+  .container
+    ul.collection.with-header
+      li.collection-header
+        h4.center My Graphs
+      if graphs
+        each graph in graphs
+          a.collection-item(href='/graphs/#{graph._id}')= graph.data.title
+      else
+        li.collection-item Looks like you don't have any saved graphs yet...
+    
+    div.bottom-right
+      a.btn-floating.btn-large.waves-effect.waves-light.red(href='/graphs/new')
+        i.material-icons add
+    

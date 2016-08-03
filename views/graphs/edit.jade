@@ -1,0 +1,65 @@
+extends ../layout
+
+block content
+  #calculator
+    .progress
+      .indeterminate
+  
+  //- Menu trigger
+  div.bottom-right
+    a#settings-button.btn-floating.btn-large.waves-effect.waves-light.orange(href='#', data-activates='slide-out')
+      i.material-icons menu
+      
+  //- Settings menu
+  ul#slide-out.side-nav
+    .container
+      li
+        .input-field
+          input(placeholder='Title', id='title', type='text')
+          label(for='title')= graph.title
+      li
+        input(type='checkbox', id='public')
+        label(for='public') Publish
+      li
+        h6 Embedding Options
+      li
+        input(type='checkbox', id='keypad', checked='checked')
+        label(for='keypad') Keypad
+      li
+        input(type='checkbox', id='graphpaper', checked='checked')
+        label(for='graphpaper') Graph Paper
+      li
+        input(type='checkbox', id='expressions', checked='checked')
+        label(for='expressions') Expressions List
+      li
+        input(type='checkbox', id='settingsMenu', checked='checked')
+        label(for='settingsMenu') Settings Menu
+      li
+        input(type='checkbox', id='zoomButtons', checked='checked')
+        label(for='zoomButtons') Zoom Buttons
+      li
+        input(type='checkbox', id='expressionsTopbar', checked='checked')
+        label(for='expressionsTopbar') Expressions Top-bar
+      li
+        input(type='checkbox', id='pointsOfInterest', checked='checked')
+        label(for='pointsOfInterest') Points of Interest
+      li
+        input(type='checkbox', id='singleVariableSolutions', checked='checked')
+        label(for='singleVariableSolutions') Single Variable Solutions
+      li
+        input(type='checkbox', id='border', checked='checked')
+        label(for='border') Border
+      li
+        input(type='checkbox', id='lockViewport')
+        label(for='lockViewport') Lock Viewport
+      li
+        input(type='checkbox', id='expressionsCollapsed')
+        label(for='expressionsCollapsed') Collapse Expressions List
+      li
+        a#save-button.waves-effect.waves-light.btn Save
+
+  
+  script(src='https://www.desmos.com/api/v0.7/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6')
+  script(type='text/javascript').
+    var graphData = !{JSON.stringify(graph)};
+  script(src='/javascripts/edit.js')

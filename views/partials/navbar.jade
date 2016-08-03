@@ -1,0 +1,13 @@
+nav
+  .nav-wrapper
+    a.brand-logo(href='/') CMS
+      i.material-icons assignment
+    if graph
+      span.brand-logo.center= graph.data.title
+    ul.right
+      li: a(href='/lessons') Lessons
+      li: a(href='/graphs') Graphs
+      li
+        .chip
+          span Sue Doe
+          img(src='/images/sophie.jpeg')
