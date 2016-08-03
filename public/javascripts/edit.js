@@ -63,9 +63,7 @@ $(function() {
     var state = getState();
     var options = getOptions();
     
-    $.ajax({
-      url: '/graphs/udpate/' + graphData._id,
-      method: 'PUT',
+    $.post('/graphs/update/' + graphData._id, {
       state: state,
       options: options,
       title: $title.val(),

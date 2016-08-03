@@ -40,7 +40,7 @@ router.post('/create', function(req, res, next) {
 });
 
 // Update an existing graph
-router.put('/udpate/:id', function(req, res, next) {
+router.post('/update/:id', function(req, res, next) {
   var db = req.db;
   var collection = db.get('graphs');
   var objID = monk.id(req.params.id);
