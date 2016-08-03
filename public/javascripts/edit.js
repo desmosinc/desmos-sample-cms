@@ -33,6 +33,7 @@ $(function() {
       $expressionsCollapsed = $('#expressionsCollapsed');
       
   $title.val(graphData.data.title);
+  $public.prop('checked', graphData.data.public);
       
   function getState() {
     return JSON.stringify(calc.getState());
@@ -67,7 +68,7 @@ $(function() {
       state: state,
       options: options,
       title: $title.val(),
-      public: $public.prop('checkbox')
+      public: $public.prop('checked')
     })
       .done(function() {
         toast('Saved!');
