@@ -57,18 +57,14 @@ $(function() {
       title: $title.val(),
       public: $public.prop('checkbox')
     })
-      .done(function() {
-        toast('Saved!');
+      .done(function(data) {
+        window.location.replace('/graphs/' + data._id);
       })
       .fail(function() {
-        toast('Error saving...');
+        Materialize.toast('Error saving...', 2000);
       });
   };
-  
-  function toast(msg) {
-    Materialize.toast(msg, 2000);
-  }
-  
+    
   // Event handlers
   var $settingsButton = $('#settings-button');
   $settingsButton.sideNav({
