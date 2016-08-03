@@ -9,7 +9,9 @@ block content
           .row
             each graph in graphs.slice(i, i+2)
               .col.s12.m6
-                .card.indigo.lighten-2
+                .card.small.indigo.lighten-2
+                  .card-image
+                    img.index-image(src=graph.data.thumbnail)
                   .card-content.white-text
                     span.card-title= graph.data.title
                   .card-action

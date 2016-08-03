@@ -50,12 +50,18 @@ $(function() {
     
     var state = getState();
     var options = getOptions();
+    var thumb = calc.screenshot({
+      width: 500,
+      height: 300,
+      targetPixelRatio: 1
+    });
     
     $.post('/graphs/create', {
       state: state,
       options: options,
       title: $title.val(),
-      public: $public.prop('checkbox')
+      public: $public.prop('checkbox'),
+      thumbnail: thumb
     })
       .done(function(data) {
         window.location.replace('/graphs/' + data._id);
