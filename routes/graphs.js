@@ -44,7 +44,7 @@ router.post('/update/:id', function(req, res, next) {
   var db = req.db;
   var collection = db.get('graphs');
   var objID = monk.id(req.params.id);
-  collection.update({_id: objID}, {data: req.body})
+  collection.findOneAndUpdate({_id: objID}, {data: req.body})
     .then(function(data) {
       res.send(data);
     })
