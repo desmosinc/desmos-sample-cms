@@ -9,7 +9,7 @@ $(function() {
   $('.progress').remove();
   
   // Graph options to populate the checkboxes correctly
-  var options = JSON.parse(graphData.data.options + '');
+  var options = JSON.parse(graphData.data.options);
   
   for (var prop in options) {
     if (options.hasOwnProperty(prop)) {
