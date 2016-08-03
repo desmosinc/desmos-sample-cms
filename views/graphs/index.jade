@@ -5,10 +5,10 @@ block content
     h4.center.grey-text.text-darken-1 My Graphs
     if graphs
       each v, i in graphs
-        if (i%2 === 0)
+        if (i%3 === 0)
           .row
-            each graph in graphs.slice(i, i+2)
-              .col.s12.m6
+            each graph in graphs.slice(i, i+3)
+              .col.s12.m4
                 .card.small.indigo.lighten-2
                   .card-image
                     img.index-image(src=graph.data.thumbnail)
