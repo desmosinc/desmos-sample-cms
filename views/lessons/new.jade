@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+  .container
+    .row
+      form.col.s12
+        .row
+          .input-field.col.s12
+            input(type='text', id='title')
+            label(for='title') Lesson Title
+            
+    .row
+      .col.s12
+        .card
+          .card-content
+            .row
+              form.col.s12
+                .row
+                  .input-field.col.s12
+                    input(type='text', id='question-title')
+                    label(for='question-title') Question Title
+                .row
+                  .input-field.col.s12
+                    textarea.materialize-textarea(id='question-text')
+                    label(for='question-text') Question Text
+          .card-action
+            a(href='#') Link
+            
+  .bottom-right.fixed-action-btn
+    a.btn-floating.btn-large.waves-effect.waves-light.pink.accent-2(href='#')
+      i.material-icons save

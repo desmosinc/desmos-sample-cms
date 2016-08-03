@@ -2,4 +2,21 @@ extends ../layout
 
 block content
   .container
-    h1.center.grey-text.text-darken-1 My Lessons
+    h4.center.grey-text.text-darken-1 My Lessons
+    if lessons
+      each v, i in lessons
+        if (i%3 === 0)
+          .row
+            each lesson in lessons.slice(i, i+3)
+              .col.s12.m4
+                .card.small.hoverable.indigo.lighten-2
+                  .card-content.white-text
+                    span.card-title.truncate= lesson.data.title
+                  .card-action
+                    a(href='lessons/#{graph._id}') Preview
+                    a(href='lessons/edit/#{graph._id}') Edit
+                    a(href='lessons/delete/#{graph._id}') Delete
+    
+  .bottom-right.fixed-action-btn
+    a.btn-floating.btn-large.waves-effect.waves-light.pink.accent-2(href='/lessons/new')
+      i.material-icons add
