@@ -60,7 +60,7 @@ $(function() {
       state: state,
       options: options,
       title: $title.val(),
-      public: $public.prop('checkbox'),
+      public: $public.prop('checked'),
       thumbnail: thumb
     })
       .done(function(data) {

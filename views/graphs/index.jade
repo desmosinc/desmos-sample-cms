@@ -18,6 +18,8 @@ block content
                     a(href='graphs/#{graph._id}') Preview
                     a(href='graphs/edit/#{graph._id}') Edit
                     a(href='graphs/delete/#{graph._id}') Delete
+                    if (graph.data.public === 'true')
+                      span.badge.white.indigo-text Public
                     
   .bottom-right
     a.btn-floating.btn-large.waves-effect.waves-light.pink.accent-2(href='/graphs/new')

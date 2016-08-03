@@ -33,7 +33,7 @@ $(function() {
       $expressionsCollapsed = $('#expressionsCollapsed');
       
   $title.val(graphData.data.title);
-  $public.prop('checked', graphData.data.public);
+  $public.prop('checked', graphData.data.public === 'true');
       
   function getState() {
     return JSON.stringify(calc.getState());
@@ -63,12 +63,18 @@ $(function() {
     
     var state = getState();
     var options = getOptions();
+    var thumb = calc.screenshot({
+      width: 500,
+      height: 300,
+      targetPixelRatio: 1
+    });
     
     $.post('/graphs/update/' + graphData._id, {
       state: state,
       options: options,
       title: $title.val(),
-      public: $public.prop('checked')
+      public: $public.prop('checked'),
+      thumbnail: thumb
     })
       .done(function() {
         toast('Saved!');
