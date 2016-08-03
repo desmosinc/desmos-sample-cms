@@ -2,7 +2,7 @@ extends ../layout
 
 block content        
   .container
-    h4.center My Graphs
+    h4.center.grey-text.text-darken-1 My Graphs
     if graphs
       each v, i in graphs
         if (i%2 === 0)
@@ -17,5 +17,5 @@ block content
                     a(href='graphs/edit/#{graph._id}') Edit
                     
   .bottom-right
-    a.btn-floating.btn-large.waves-effect.waves-light.pink(href='/graphs/new')
+    a.btn-floating.btn-large.waves-effect.waves-light.pink.accent-2(href='/graphs/new')
       i.material-icons add

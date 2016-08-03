@@ -3,11 +3,11 @@ extends ../layout
 block content
   #calculator
     .progress.pink.lighten-5
-      .indeterminate.pink
+      .indeterminate.pink.accent-2
   
   //- Menu trigger
   .bottom-right
-    a#settings-button.btn-floating.btn-large.waves-effect.waves-light.pink(href='#', data-activates='slide-out')
+    a#settings-button.btn-floating.btn-large.waves-effect.waves-light.pink.accent-2(href='#', data-activates='slide-out')
       i.material-icons menu
       
   //- Settings menu
@@ -56,7 +56,7 @@ block content
         input(type='checkbox', id='expressionsCollapsed')
         label(for='expressionsCollapsed') Collapse Expressions List
       li
-        a#save-button.waves-effect.waves-light.btn Save
+        a#save-button.waves-effect.waves-light.btn.pink.accent-2 Save
 
   
   script(src='https://www.desmos.com/api/v0.7/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6')
