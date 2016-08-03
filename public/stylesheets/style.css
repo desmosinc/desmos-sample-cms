@@ -1,3 +1,7 @@
+body {
+  background: #ddd;
+}
+
 #calculator {
   position: absolute;
   width: 100%;
@@ -10,7 +14,6 @@ nav {
 }
 
 .bottom-right {
-  position: absolute;
   bottom: 24px;
   right: 24px;
 }
