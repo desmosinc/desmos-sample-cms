@@ -28,4 +28,27 @@ nav {
   font-size: 40px;
   right: 18px;
   bottom: 10px;
+  color: #26a69a;
+  opacity: 0.8;
+}
+
+.card-image i:hover {
+  opacity: 1;
+}
+
+.collection-item img {
+  position: absolute;
+  right: 10px;
+  width: 100px;
+  height: 60px;
+}
+
+.graph-item {
+  cursor: pointer;
+  color: #26a69a;
+}
+
+.graph-item:hover {
+  background-color: #26a69a;
+  color: #fff;
 }

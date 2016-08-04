@@ -16,7 +16,7 @@ block content
           .card.horizontal
             .card-image
               img.graph-preview(src='/images/graph_bg.png')
-              i.material-icons library_add
+              i.insert-image.material-icons library_add
             .card-stacked
               .card-content
                 .card-title
@@ -35,7 +35,7 @@ block content
               i.material-icons.left add
                 
               
-    // Modal for entering new questions
+    //- Modal for entering new questions
     #question-modal.modal
       .modal-content
         .row
@@ -49,7 +49,14 @@ block content
       .modal-footer
         a#insert-update-question.modal-action.modal-close.btn-flat(href='#') Add
         a#cancel.modal-action.modal-close.btn-flat(href='#') Cancel
-    
+        
+    //- Bottom modal for selecting which graph to embed
+    #graphs-modal.modal.modal-fixed-footer
+      .modal-content
+        h4 Insert Graph
+        ul#graphs-collection.collection
+      .modal-footer    
+        a#cancel-graph.modal-action.modal-close.btn-flat(href='#') Cancel
             
   .bottom-right.fixed-action-btn
     a.btn-floating.btn-large.waves-effect.waves-light.pink.accent-2(href='#')

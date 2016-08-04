@@ -18,6 +18,15 @@ router.get('/', function(req, res, next) {
     });
 });
 
+router.get('/list', function(req, res, next) {
+  var db = req.db;
+  collection = db.get('graphs');
+  collection.find({})
+    .then(function(docs) {
+      res.json(docs);
+    });
+});
+
 // Show the UI for creating a new graph
 router.get('/new', function(req, res, next) {
   res.render('graphs/new');

@@ -6,6 +6,8 @@ $(function() {
       $questionText = $('#question-text'),
       $questionRow = $('.questions'),
       $questionModal = $('#question-modal'),
+      $graphsModal = $('#graphs-modal'),
+      $graphsCollection = $('#graphs-collection'),
       $insertUpdateQuestion = $('#insert-update-question');
       
   var template = $('.question-template').html();
@@ -61,6 +63,11 @@ $(function() {
       $questionModal.openModal();
       evt.preventDefault();
     });
+    
+    $newQuestion.find('.insert-image').click(function() {
+      $graphsModal.openModal();
+    });
+
   };
   
   Question.prototype.remove = function() {
@@ -82,6 +89,21 @@ $(function() {
     $question.find('p').text(newText);
     resetForm();
   };
+  
+  // Populate the graphs modal
+  $.get('/graphs/list')
+    .done(function(data) {
+      populateGraphs(data);
+    });
+    
+  function populateGraphs(data) {
+    data.forEach(function(elt, ind, arr) {
+      var $item = $('<li class="collection-item avatar graph-item valign-wrapper"></li>');
+      $item.append($('<span class="title valign">' + elt.data.title + '</span>'));
+      $item.append($('<img src=' + elt.data.thumbnail + '>'));
+      $graphsCollection.append($item);
+    });
+  }
   
   // Handlers
   $('#add-question').click(function(evt) {
@@ -105,6 +127,10 @@ $(function() {
         text: $questionText.val()
       }));
     }
+    evt.preventDefault();
+  });
+  
+  $('#cancel-graph').click(function(evt) {
     evt.preventDefault();
   });
   
