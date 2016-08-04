@@ -14,6 +14,13 @@ $(function() {
   var currentQuestion = 0;
   var questions = [];
   
+  function resetForm() {
+    editing = false;
+    currentQuestion = 0;
+    $questionTitle.val('');
+    $questionText.val('');
+  }
+  
   // Question
   function Question(opts) {
     this.title = opts.title;
@@ -33,8 +40,7 @@ $(function() {
     
     $questionRow.append($newQuestion);
     
-    $questionTitle.val('');
-    $questionText.val('');
+    resetForm();
     
     // Attach handlers to the new buttons only
     $newQuestion.find('.remove-question').click(function(evt) {
@@ -74,6 +80,7 @@ $(function() {
     var $question = $('.question').eq(this.number - 1);
     $question.find('h4').text(newTitle);
     $question.find('p').text(newText);
+    resetForm();
   };
   
   // Handlers
@@ -83,11 +90,15 @@ $(function() {
     evt.preventDefault();
   });
   
+  $('#cancel').click(function(evt) {
+    resetForm();
+    evt.preventDefault();
+  });
+  
   $insertUpdateQuestion.click(function(evt) {
     if (editing) {
       questions[currentQuestion - 1].setContents($questionTitle.val(), $questionText.val());
-      editing = false
-      currentQuestion = 0;
+      resetForm();
     } else {
       questions.push(new Question({
         title: $questionTitle.val(),
