@@ -20,7 +20,7 @@ block content
               .card-content
                 p Question text
             .card-action
-              a(href='#') Edit
+              a.edit-question(href='#') Edit
               a.remove-question(href='#') Remove
 
     .row
@@ -43,8 +43,8 @@ block content
             textarea#question-text.materialize-textarea
             label(for='question-text') Question Text
       .modal-footer
-        a#insert-question.modal-action.modal-close.btn-flat(href='#') Done
-      
+        a#insert-update-question.modal-action.modal-close.btn-flat(href='#') Add
+        a.modal-action.modal-close.btn-flat(href='#') Cancel
     
             
   .bottom-right.fixed-action-btn
