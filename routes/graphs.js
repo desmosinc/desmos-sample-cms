@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
 router.get('/list', function(req, res, next) {
   var db = req.db;
   collection = db.get('graphs');
-  collection.find({})
+  collection.find({'data.public': 'true'})
     .then(function(docs) {
       res.json(docs);
     });
