@@ -64,6 +64,7 @@ $(function() {
     });
     
     $newQuestion.find('.insert-image').click(function() {
+      currentQuestion = self.number;
       $graphsModal.openModal();
     });
 
@@ -100,6 +101,10 @@ $(function() {
       var $item = $('<li class="collection-item avatar graph-item valign-wrapper"></li>');
       $item.append($('<span class="title valign">' + elt.data.title + '</span>'));
       $item.append($('<img src=' + elt.data.thumbnail + '>'));
+      $item.click(function() {
+        $('.graph-preview').eq(currentQuestion).attr('src', elt.data.thumbnail);
+        $graphsModal.closeModal();
+      });
       $graphsCollection.append($item);
     });
   }
