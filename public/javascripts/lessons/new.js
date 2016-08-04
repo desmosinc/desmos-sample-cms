@@ -39,7 +39,8 @@ $(function() {
     $newQuestion.find('p').text($questionText.val());
     $newQuestion.removeClass('question-template');
     $newQuestion.attr('data-number', this.number);
-    $questionRow.append($newQuestion).hide().fadeIn('fast');
+    $questionRow.append($newQuestion);
+    $newQuestion.hide().fadeIn('fast');
     
     // Attach handlers to the new buttons only
     $newQuestion.find('.remove-question').click(function(evt) {

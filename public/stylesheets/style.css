@@ -65,6 +65,10 @@ nav {
 }
 
 .card.horizontal .card-image {
-  max-width: 33%;
-  border: 1px solid #ddd;
+  display: flex;
+  max-width: 40%;
+}
+
+.card.horizontal .card-image img {
+  object-fit: cover;
 }
