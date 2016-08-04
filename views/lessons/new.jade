@@ -6,39 +6,46 @@ block content
       form.col.s12
         .row
           .input-field.col.s12
-            input(type='text', id='title')
+            input.center(type='text', id='title')
             label(for='title') Lesson Title
     
-    //- This is where the questions will be inserted
     .questions
-      //- This .row will be hidden and cloned to add questions
+      //- This will be hidden and used as a template for inserting new questions
       .row.question-template
         .col.s12
           .card
             .card-content
-              .card-title Question Title
-              p Some text stuff
+              .card-title
+                h4 Question Title
+              .card-content
+                p Question text
             .card-action
-              a(href='#') Remove
-      
-    
-    //- Input form for new questions
+              a(href='#') Edit
+              a.remove-question(href='#') Remove
+
     .row
       .col.s12
         .card
-          .card-content
-            .row
-              form.col.s12
-                .row
-                  .input-field.col.s12
-                    input(type='text', id='question-title')
-                    label(for='question-title') Question Title
-                .row
-                  .input-field.col.s12
-                    textarea.materialize-textarea(id='question-text')
-                    label(for='question-text') Question Text
-          .card-action
-            a#add-question(href='#') Add
+          .card-action.center
+            a#add-question.btn(href='#') Add New Question
+              i.material-icons.left add
+                
+              
+    // Modal for entering new questions
+    #question-modal.modal
+      .modal-content
+        .row
+          .input-field.col.s12
+            input#question-title(type='text')
+            label(for='question-title') Question Title
+        .row
+          .input-field.col.s12
+            textarea#question-text.materialize-textarea
+            label(for='question-text') Question Text
+      .modal-footer
+        a#insert-question.modal-action.modal-close.btn-flat(href='#') Done
+      
+    
             
   .bottom-right.fixed-action-btn
     a.btn-floating.btn-large.waves-effect.waves-light.pink.accent-2(href='#')
