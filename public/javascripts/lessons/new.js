@@ -39,14 +39,13 @@ $(function() {
     $newQuestion.find('p').text($questionText.val());
     $newQuestion.removeClass('question-template');
     $newQuestion.attr('data-number', this.number);
-    
-    $questionRow.append($newQuestion);
-    
-    resetForm();
+    $questionRow.append($newQuestion).hide().fadeIn('fast');
     
     // Attach handlers to the new buttons only
     $newQuestion.find('.remove-question').click(function(evt) {
-      $(this).closest('.row').remove();
+      $(this).closest('.row').animate({opacity: 0, height: 0},'fast', function() {
+        this.remove();
+      });
       self.remove();
       evt.preventDefault();
     });
