@@ -22,13 +22,24 @@ nav {
   display: none;
 }
 
-.card-image i {
+.card-image .insert-image {
   position: absolute;
   cursor: pointer;
   font-size: 40px;
   right: 18px;
   bottom: 10px;
   color: #26a69a;
+}
+
+.card-image .remove-image {
+  position: absolute;
+  cursor: pointer;
+  font-size: 40px;
+  right: 18px;
+  top: 10px;
+}
+
+.card-image i {
   opacity: 0.8;
 }
 

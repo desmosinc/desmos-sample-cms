@@ -67,6 +67,11 @@ $(function() {
       currentQuestion = self.number;
       $graphsModal.openModal();
     });
+    
+    $newQuestion.find('.remove-image').hide().click(function() {
+      $('.graph-preview').eq(self.number).attr('src', '/images/graph_bg.png');
+      $(this).hide();
+    });
 
   };
   
@@ -103,6 +108,8 @@ $(function() {
       $item.append($('<img src=' + elt.data.thumbnail + '>'));
       $item.click(function() {
         $('.graph-preview').eq(currentQuestion).attr('src', elt.data.thumbnail);
+        $('.remove-image').eq(currentQuestion).show();
+        currentQuestion = 0;
         $graphsModal.closeModal();
       });
       $graphsCollection.append($item);
