@@ -21,3 +21,11 @@ nav {
 .question-template {
   display: none;
 }
+
+.card-image i {
+  position: absolute;
+  cursor: pointer;
+  font-size: 40px;
+  right: 18px;
+  bottom: 10px;
+}

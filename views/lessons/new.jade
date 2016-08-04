@@ -13,15 +13,19 @@ block content
       //- This will be hidden and used as a template for inserting new questions
       .row.question-template
         .col.s12
-          .card
-            .card-content
-              .card-title
-                h4 Question Title
+          .card.horizontal
+            .card-image
+              img.graph-preview(src='/images/graph_bg.png')
+              i.material-icons library_add
+            .card-stacked
               .card-content
-                p Question text
-            .card-action
-              a.edit-question(href='#') Edit
-              a.remove-question(href='#') Remove
+                .card-title
+                  h4 Question Title
+                .card-content
+                  p Question text
+              .card-action
+                a.edit-question(href='#') Edit
+                a.remove-question(href='#') Remove
 
     .row
       .col.s12
