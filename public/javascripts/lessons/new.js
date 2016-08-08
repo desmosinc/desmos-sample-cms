@@ -14,7 +14,7 @@ $(function() {
   
   var editing = false;
   var currentQuestion = 0;
-  var questions = [];
+  questions = [];
   
   function resetForm() {
     editing = false;
@@ -28,6 +28,7 @@ $(function() {
     this.title = opts.title;
     this.text = opts.text;
     this.number = questions.length + 1;
+    this.graphID = '';
     this.insert();
   }
   
@@ -71,6 +72,7 @@ $(function() {
     
     $newQuestion.find('.remove-image').hide().click(function() {
       $('.graph-preview').eq(self.number).attr('src', '/images/graph_bg.png');
+      questions[self.number - 1].graphID = '';
       $(this).hide();
     });
 
@@ -110,6 +112,7 @@ $(function() {
       $item.click(function() {
         $('.graph-preview').eq(currentQuestion).attr('src', elt.data.thumbnail);
         $('.remove-image').eq(currentQuestion).show();
+        questions[currentQuestion - 1].graphID = elt._id;
         currentQuestion = 0;
         $graphsModal.closeModal();
       });
