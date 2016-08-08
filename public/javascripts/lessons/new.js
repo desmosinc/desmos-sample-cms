@@ -120,6 +120,21 @@ $(function() {
     });
   }
   
+  function saveLesson() {
+    var title = $lessonTitle.val();
+    $.post('/lessons/create', {
+      title: title,
+      questions: questions
+    })
+      .done(function(data) {
+        Materialize.toast('Saved!', 2000);
+        // window.location.replace('/graphs/' + data._id);
+      })
+      .fail(function() {
+        Materialize.toast('Error saving...', 2000);
+      });
+  }
+  
   // Handlers
   $('#add-question').click(function(evt) {
     $insertUpdateQuestion.text('Add');
@@ -148,5 +163,7 @@ $(function() {
   $('#cancel-graph').click(function(evt) {
     evt.preventDefault();
   });
+  
+  $('#save-lesson').click(saveLesson);
   
 });
