@@ -83,7 +83,7 @@ router.get('/delete/:id', function(req, res, next) {
   var objID = monk.id(req.params.id);
   collection.findOneAndDelete({_id: objID})
     .then(function(doc) {
-      res.redirect('/graphs/');
+      res.redirect('/graphs');
     });
 });
 

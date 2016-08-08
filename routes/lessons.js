@@ -61,6 +61,17 @@ router.post('/update/:id', function(req, res, next) {
     });
 });
 
+// Delete a particular graph
+router.get('/delete/:id', function(req, res, next) {
+  var db = req.db;
+  var collection = db.get('lessons');
+  var objID = monk.id(req.params.id);
+  collection.findOneAndDelete({_id: objID})
+    .then(function(doc) {
+      res.redirect('/lessons');
+    });
+});
+
 // Send JSON info for particular lesson
 router.get('/api/:id', function(req, res, next) {
   var db = req.db;
