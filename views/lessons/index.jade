@@ -13,7 +13,9 @@ block content
                   .card-content.white-text
                     h4.card-title.truncate= lesson.title
                     - var questions = JSON.parse(lesson.questions);
-                    p #{lesson.numQuestions} Questions
+                    - var plural = lesson.numQuestions > 1 ? 's' : ''
+                    p #{lesson.numQuestions} Question#{plural}
+                    p=lesson.created
                   .card-action
                     a(href='lessons/#{lesson._id}') Preview
                     a(href='lessons/edit/#{lesson._id}') Edit

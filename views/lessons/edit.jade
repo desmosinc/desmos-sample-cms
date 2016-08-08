@@ -1,0 +1,66 @@
+extends ../layout
+
+block content
+  .container
+    .row
+      form.col.s12
+        .row
+          .input-field.col.s12
+            input.center(type='text', id='title')
+            label(for='title') Lesson Title
+    
+    .questions
+      //- This will be hidden and used as a template for inserting new questions
+      .row.question-template
+        .col.s12
+          .card.horizontal
+            .card-image
+              img.graph-preview(src='/images/graph_bg.png')
+              i.insert-image.material-icons library_add
+              i.remove-image.material-icons delete
+            .card-stacked
+              .card-content
+                .card-title
+                  h4 Question Title
+                .card-content
+                  p Question text
+              .card-action
+                a.edit-question(href='#') Edit
+                a.remove-question(href='#') Remove
+
+    .row
+      .col.s12
+        .card
+          .card-action.center
+            a#add-question.btn(href='#') Add New Question
+              i.material-icons.left add
+                
+              
+    //- Modal for entering new questions
+    #question-modal.modal
+      .modal-content
+        .row
+          .input-field.col.s12
+            input#question-title(type='text')
+            label(for='question-title') Question Title
+        .row
+          .input-field.col.s12
+            textarea#question-text.materialize-textarea
+            label(for='question-text') Question Text
+      .modal-footer
+        a#insert-update-question.modal-action.modal-close.btn-flat(href='#') Add
+        a#cancel.modal-action.modal-close.btn-flat(href='#') Cancel
+        
+    //- Bottom modal for selecting which graph to embed
+    #graphs-modal.modal.modal-fixed-footer
+      .modal-content
+        h4 Insert Graph
+        ul#graphs-collection.collection
+      .modal-footer    
+        a#cancel-graph.modal-action.modal-close.btn-flat(href='#') Cancel
+            
+  .bottom-right.fixed-action-btn
+    a#save-lesson.btn-floating.btn-large.waves-effect.waves-light.pink.accent-2(href='#')
+      i.material-icons save
+      
+  script(src='/javascripts/lessons/edit.js')

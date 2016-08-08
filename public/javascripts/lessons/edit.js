@@ -23,12 +23,19 @@ $(function() {
     $questionText.val('');
   }
   
+  function getLessonID() {
+    var fullPath = location.pathname;
+    id = fullPath.substr(fullPath.lastIndexOf('/') + 1);
+    return id;
+  }
+  
+  
   // Question
-  function Question(opts) {
+  Question = function(opts) {
     this.title = opts.title;
     this.text = opts.text;
-    this.number = questions.length + 1;
-    this.graphID = '';
+    this.number = opts.number !== undefined ? opts.number : questions.length + 1;
+    this.graphID = opts.graphID !== undefined ? opts.graphID : '';
     this.insert();
   }
   
@@ -36,8 +43,8 @@ $(function() {
     var self = this;
     
     var $newQuestion = $('<div class="row question">' + template + '</div>');
-    $newQuestion.find('h4').text($questionTitle.val());
-    $newQuestion.find('p').text($questionText.val());
+    $newQuestion.find('h4').text(this.title);
+    $newQuestion.find('p').text(this.text);
     $newQuestion.removeClass('question-template');
     $newQuestion.attr('data-number', this.number);
     $questionRow.append($newQuestion);
@@ -127,7 +134,7 @@ $(function() {
     });
     return JSON.stringify(obj);
   }
-  
+    
   function saveLesson() {
     var title = $lessonTitle.val();
     if (title === '') {
@@ -153,6 +160,23 @@ $(function() {
       });
   }
   
+  function loadLesson() {
+    var id = getLessonID();
+    $.get('/lessons/api/' + id)
+      .done(function(data) {
+        var questionObj = JSON.parse(data.questions);
+        $lessonTitle.val(data.title);
+        for (var q in questionObj) {
+          var question = questionObj[q];
+          questions[question.number - 1] = new Question({
+            title: question.title,
+            text: question.text
+          });
+        }
+      });
+  }
+  loadLesson();
+    
   // Handlers
   $('#add-question').click(function(evt) {
     resetForm();

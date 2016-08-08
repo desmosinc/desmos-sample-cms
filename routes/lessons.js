@@ -39,4 +39,20 @@ router.post('/create', function(req, res, next) {
     });
 });
 
+// Edit a particular lesson
+router.get('/edit/:id', function(req, res, next) {
+  res.render('lessons/edit');
+});
+
+// Send JSON info for particular lesson
+router.get('/api/:id', function(req, res, next) {
+  var db = req.db;
+  var collection = db.get('lessons');
+  var objID = monk.id(req.params.id);
+  collection.findOne({_id: objID})
+    .then(function(doc) {
+      res.send(doc);
+    });
+});
+
 module.exports = router;
