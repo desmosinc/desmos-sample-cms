@@ -4,7 +4,18 @@ var monk = require('monk');
 
 /* GET lessons listing. */
 router.get('/', function(req, res, next) {
-  res.render('lessons/index');
+  var db = req.db;
+  var collection = db.get('lessons');
+  collection.find({})
+    .then(function(docs) {
+      res.render('lessons/index', {lessons: docs});
+    })
+    .catch(function(err) {
+      res.send(err);
+    })
+    .then(function() {
+      db.close();
+    });
 });
 
 // Show the UI for creating a new lesson

@@ -9,13 +9,15 @@ block content
           .row
             each lesson in lessons.slice(i, i+3)
               .col.s12.m4
-                .card.small.hoverable.indigo.lighten-2
+                .card.small.hoverable.teal.lighten-2
                   .card-content.white-text
-                    span.card-title.truncate= lesson.data.title
+                    h4.card-title.truncate= lesson.title
+                    - var questions = JSON.parse(lesson.questions);
+                    p #{lesson.numQuestions} Questions
                   .card-action
-                    a(href='lessons/#{graph._id}') Preview
-                    a(href='lessons/edit/#{graph._id}') Edit
-                    a(href='lessons/delete/#{graph._id}') Delete
+                    a(href='lessons/#{lesson._id}') Preview
+                    a(href='lessons/edit/#{lesson._id}') Edit
+                    a(href='lessons/delete/#{lesson._id}') Delete
     
   .bottom-right.fixed-action-btn
     a.btn-floating.btn-large.waves-effect.waves-light.pink.accent-2(href='/lessons/new')

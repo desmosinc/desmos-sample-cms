@@ -120,15 +120,24 @@ $(function() {
     });
   }
   
+  function serializeQuestions() {
+    var obj = {};
+    questions.forEach(function(elt, ind, arr) {
+      obj[elt.number] = elt;
+    });
+    return JSON.stringify(obj);
+  }
+  
   function saveLesson() {
     var title = $lessonTitle.val();
+    var questionObject = serializeQuestions();
     $.post('/lessons/create', {
       title: title,
-      questions: questions
+      numQuestions: questions.length,
+      questions: questionObject
     })
       .done(function(data) {
         Materialize.toast('Saved!', 2000);
-        // window.location.replace('/graphs/' + data._id);
       })
       .fail(function() {
         Materialize.toast('Error saving...', 2000);
