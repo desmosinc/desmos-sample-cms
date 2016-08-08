@@ -29,6 +29,8 @@ $(function() {
     return id;
   }
   
+  var id = getLessonID();
+  
   
   // Question
   Question = function(opts) {
@@ -146,7 +148,7 @@ $(function() {
       return;
     }
     var questionObject = serializeQuestions();
-    $.post('/lessons/create', {
+    $.post('/lessons/update/' + id, {
       title: title,
       numQuestions: questions.length,
       questions: questionObject,
@@ -161,7 +163,6 @@ $(function() {
   }
   
   function loadLesson() {
-    var id = getLessonID();
     $.get('/lessons/api/' + id)
       .done(function(data) {
         var questionObj = JSON.parse(data.questions);

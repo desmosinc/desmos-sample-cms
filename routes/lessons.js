@@ -44,6 +44,23 @@ router.get('/edit/:id', function(req, res, next) {
   res.render('lessons/edit');
 });
 
+// Update an existing lesson
+router.post('/update/:id', function(req, res, next) {
+  var db = req.db;
+  var collection = db.get('lessons');
+  var objID = monk.id(req.params.id);
+  collection.findOneAndUpdate({_id: objID}, req.body)
+    .then(function(data) {
+      res.send(data);
+    })
+    .catch(function(err) {
+      res.send(err);
+    })
+    .then(function() {
+      db.close();
+    });
+});
+
 // Send JSON info for particular lesson
 router.get('/api/:id', function(req, res, next) {
   var db = req.db;
