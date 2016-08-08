@@ -1,5 +1,5 @@
 body {
-  background: #ddd;
+  /*background: #ddd;*/
 }
 
 #calculator {
@@ -82,6 +82,11 @@ nav {
 }
 
 .calculator {
-  width: 100%;
+  width: 50%;
   height: 500px;
+  margin-top: -50px;
+}
+
+.question-container {
+  margin-top: -16px;
 }

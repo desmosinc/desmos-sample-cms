@@ -77,7 +77,7 @@ $(function() {
       thumbnail: thumb
     })
       .done(function() {
-        toast('Saved!');
+        Materialize.toast('Saved!', 2000);
       })
       .fail(function() {
         toast('Error saving...');
