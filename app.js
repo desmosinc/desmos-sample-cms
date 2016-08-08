@@ -8,7 +8,6 @@ var mongo = require('mongodb');
 var monk = require('monk');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 var lessons = require('./routes/lessons');
 var graphs = require('./routes/graphs');
 
@@ -36,7 +35,6 @@ app.use(function(req, res, next) {
 
 // Routes
 app.use('/', routes);
-app.use('/users', users);
 app.use('/lessons', lessons);
 app.use('/graphs', graphs);
 
