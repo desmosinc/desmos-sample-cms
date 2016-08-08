@@ -14,9 +14,10 @@ $(function() {
   
   function insertQuestion(num, title, text) {
     $tabs.append('<li class="tab col s3"><a href="#q' +num+ '">Q' +num+ '</a></li>');
-    var $div = $('<div id="q' +num+ '" class="white container"><h4 class="center">' +title+ '</h4></div>');
-    $div.append($('<div class="question-text container left"><p>' +text+ '</p></div>'));
-    $div.append($('<div class="calculator right" id="calculator' +num+ '"></div>'));
+    var $div = $('<div id="q' +num+ '" class="white container row"><h4 class="center q-title">' +title+ '</h4></div>');
+    var $leftDiv = $('<div class="question-text container col s6"><p>' +text+ '</p></div>');
+    $div.append($leftDiv);
+    $div.append($('<div class="calculator col s6" id="calculator' +num+ '"></div>'));
     $questionContainer.append($div);
   }
     
