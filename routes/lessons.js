@@ -83,4 +83,15 @@ router.get('/api/:id', function(req, res, next) {
     });
 });
 
+// Show a particular lesson
+router.get('/:id', function(req, res, next) {
+  var db = req.db;
+  var collection = db.get('lessons');
+  var objID = monk.id(req.params.id);
+  collection.findOne({_id: objID})
+    .then(function(doc) {
+      res.render('lessons/show', {lesson: doc});
+    });
+});
+
 module.exports = router;

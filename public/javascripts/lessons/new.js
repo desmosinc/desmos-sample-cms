@@ -146,7 +146,7 @@ $(function() {
       created: new Date().toDateString()
     })
       .done(function(data) {
-        Materialize.toast('Saved!', 2000);
+        window.location.replace('/lessons/edit/' + data._id);
       })
       .fail(function() {
         Materialize.toast('Error saving...', 2000);
