@@ -72,3 +72,16 @@ nav {
 .card.horizontal .card-image img {
   object-fit: cover;
 }
+
+.tabs {
+  margin-bottom: 2rem;
+}
+
+.question-text {
+  font-size: 1.5em;
+}
+
+.calculator {
+  width: 100%;
+  height: 500px;
+}
