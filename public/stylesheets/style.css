@@ -77,6 +77,14 @@ nav {
   margin-bottom: 2rem;
 }
 
+.tabs .tab a {
+  color: #ff4081;
+}
+
+.tabs .indicator {
+  background-color: #f48fb1;
+}
+
 .question-text {
   font-size: 1.5em;
 }
@@ -85,8 +93,4 @@ nav {
   width: 50%;
   height: 500px;
   margin-top: -50px;
-}
-
-.question-container {
-  margin-top: -16px;
 }

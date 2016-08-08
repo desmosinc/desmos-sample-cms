@@ -43,6 +43,7 @@ $(function() {
         });
         // Initialize tabs
         $tabs.tabs();
+        $('.progress').remove();
       });
   }
   loadLesson();
