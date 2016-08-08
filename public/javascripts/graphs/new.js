@@ -64,7 +64,7 @@ $(function() {
       thumbnail: thumb
     })
       .done(function(data) {
-        window.location.replace('/graphs/' + data._id);
+        window.location.replace('/graphs/edit/' + data._id);
       })
       .fail(function() {
         Materialize.toast('Error saving...', 2000);
