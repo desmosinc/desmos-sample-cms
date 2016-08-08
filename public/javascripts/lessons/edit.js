@@ -83,11 +83,14 @@ $(function() {
       $graphsModal.openModal();
     });
     
-    $newQuestion.find('.remove-image').hide().click(function() {
+    var $removeImage = $newQuestion.find('.remove-image');
+    $removeImage.click(function() {
       $('.graph-preview').eq(self.number).attr('src', '/images/graph_bg.png');
       questions[self.number - 1].graphID = '';
+      questions[self.number - 1].thumbnail = '';
       $(this).hide();
     });
+    if (this.thumbnail === '') $removeImage.hide();
 
   };
   
