@@ -29,6 +29,7 @@ $(function() {
     this.text = opts.text;
     this.number = questions.length + 1;
     this.graphID = '';
+    this.thumbnail = '';
     this.insert();
   }
   
@@ -113,6 +114,7 @@ $(function() {
         $('.graph-preview').eq(currentQuestion).attr('src', elt.thumbnail);
         $('.remove-image').eq(currentQuestion).show();
         questions[currentQuestion - 1].graphID = elt._id;
+        questions[currentQuestion - 1].thumbnail = elt.thumbnail;
         currentQuestion = 0;
         $graphsModal.closeModal();
       });

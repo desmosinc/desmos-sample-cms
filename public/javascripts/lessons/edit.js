@@ -38,6 +38,7 @@ $(function() {
     this.text = opts.text;
     this.number = opts.number !== undefined ? opts.number : questions.length + 1;
     this.graphID = opts.graphID !== undefined ? opts.graphID : '';
+    this.thumbnail = opts.thumbnail !== undefined ? opts.thumbnail : '';
     this.insert();
   }
   
@@ -47,6 +48,9 @@ $(function() {
     var $newQuestion = $('<div class="row question">' + template + '</div>');
     $newQuestion.find('h4').text(this.title);
     $newQuestion.find('p').text(this.text);
+    if (this.thumbnail !== '') {
+      $newQuestion.find('img').attr('src', this.thumbnail);
+    }
     $newQuestion.removeClass('question-template');
     $newQuestion.attr('data-number', this.number);
     $questionRow.append($newQuestion);
@@ -122,6 +126,7 @@ $(function() {
         $('.graph-preview').eq(currentQuestion).attr('src', elt.thumbnail);
         $('.remove-image').eq(currentQuestion).show();
         questions[currentQuestion - 1].graphID = elt._id;
+        questions[currentQuestion - 1].thumbnail = elt.thumbnail;
         currentQuestion = 0;
         $graphsModal.closeModal();
       });
@@ -171,7 +176,9 @@ $(function() {
           var question = questionObj[q];
           questions[question.number - 1] = new Question({
             title: question.title,
-            text: question.text
+            text: question.text,
+            graphID: question.graphID,
+            thumbnail: question.thumbnail
           });
         }
       });
