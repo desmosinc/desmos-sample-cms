@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
 router.get('/list', function(req, res, next) {
   var db = req.db;
   collection = db.get('graphs');
-  collection.find({'data.public': 'true'})
+  collection.find({'public': 'true'})
     .then(function(docs) {
       res.json(docs);
     });
@@ -36,7 +36,7 @@ router.get('/new', function(req, res, next) {
 router.post('/create', function(req, res, next) {
   var db = req.db;
   var collection = db.get('graphs');
-  collection.insert({data: req.body})
+  collection.insert(req.body)
     .then(function(data) {
       res.send(data);
     })
@@ -53,7 +53,7 @@ router.post('/update/:id', function(req, res, next) {
   var db = req.db;
   var collection = db.get('graphs');
   var objID = monk.id(req.params.id);
-  collection.findOneAndUpdate({_id: objID}, {data: req.body})
+  collection.findOneAndUpdate({_id: objID}, req.body)
     .then(function(data) {
       res.send(data);
     })
@@ -84,6 +84,17 @@ router.get('/delete/:id', function(req, res, next) {
   collection.findOneAndDelete({_id: objID})
     .then(function(doc) {
       res.redirect('/graphs');
+    });
+});
+
+// Send JSON info for particular lesson
+router.get('/api/:id', function(req, res, next) {
+  var db = req.db;
+  var collection = db.get('graphs');
+  var objID = monk.id(req.params.id);
+  collection.findOne({_id: objID})
+    .then(function(doc) {
+      res.send(doc);
     });
 });
 

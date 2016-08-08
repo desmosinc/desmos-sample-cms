@@ -107,10 +107,10 @@ $(function() {
   function populateGraphs(data) {
     data.forEach(function(elt, ind, arr) {
       var $item = $('<li class="collection-item avatar graph-item valign-wrapper"></li>');
-      $item.append($('<span class="title valign">' + elt.data.title + '</span>'));
-      $item.append($('<img src=' + elt.data.thumbnail + '>'));
+      $item.append($('<span class="title valign">' + elt.title + '</span>'));
+      $item.append($('<img src=' + elt.thumbnail + '>'));
       $item.click(function() {
-        $('.graph-preview').eq(currentQuestion).attr('src', elt.data.thumbnail);
+        $('.graph-preview').eq(currentQuestion).attr('src', elt.thumbnail);
         $('.remove-image').eq(currentQuestion).show();
         questions[currentQuestion - 1].graphID = elt._id;
         currentQuestion = 0;

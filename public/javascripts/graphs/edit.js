@@ -5,11 +5,11 @@ $(function() {
   var calc = Desmos.Calculator(elt, {
     administerSecretFolders: true
   });
-  calc.setState(graphData.data.state);
+  calc.setState(graphData.state);
   $('.progress').remove();
   
   // Graph options to populate the checkboxes correctly
-  var options = JSON.parse(graphData.data.options);
+  var options = JSON.parse(graphData.options);
   
   for (var prop in options) {
     if (options.hasOwnProperty(prop)) {
@@ -32,8 +32,8 @@ $(function() {
       $lockViewport = $('#lockViewport'),
       $expressionsCollapsed = $('#expressionsCollapsed');
       
-  $title.val(graphData.data.title);
-  $public.prop('checked', graphData.data.public === 'true');
+  $title.val(graphData.title);
+  $public.prop('checked', graphData.public === 'true');
       
   function getState() {
     return JSON.stringify(calc.getState());

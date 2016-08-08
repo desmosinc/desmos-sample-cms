@@ -11,15 +11,15 @@ block content
               .col.s12.m4
                 .card.small.hoverable.teal.lighten-2
                   .card-image
-                    img.index-image(src=graph.data.thumbnail)
+                    img.index-image(src=graph.thumbnail)
                   .card-content.white-text
-                    span.card-title.truncate= graph.data.title
+                    span.card-title.truncate= graph.title
                   .card-action
                     a(href='graphs/#{graph._id}') Preview
                     a(href='graphs/edit/#{graph._id}') Edit
                     a(href='graphs/delete/#{graph._id}') Delete
-                    if (graph.data.public === 'true')
-                      span.badge.white.indigo-text Public
+                    if (graph.public === 'true')
+                      span.badge.white.teal-text Public
                     
   .bottom-right.fixed-action-btn
     a.btn-floating.btn-large.waves-effect.waves-light.pink.accent-2(href='/graphs/new')
