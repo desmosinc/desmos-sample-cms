@@ -44,7 +44,7 @@ $(function() {
   
   function saveGraph() {
     if ($title.val() === '') {
-      toast('You need a title!');
+      Materialize.toast('You need a title!', 2000);
       return;
     }
     

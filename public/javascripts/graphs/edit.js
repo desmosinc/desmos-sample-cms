@@ -57,7 +57,7 @@ $(function() {
   
   function saveGraph() {
     if ($title.val() === '') {
-      toast('You need a title!');
+      Materialize.toast('You need a title!', 2000);
       return;
     }
     
@@ -83,11 +83,7 @@ $(function() {
         toast('Error saving...');
       });
   };
-  
-  function toast(msg) {
-    Materialize.toast(msg, 2000);
-  }
-  
+    
   // Event handlers
   var $settingsButton = $('#settings-button');
   $settingsButton.sideNav({

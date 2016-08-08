@@ -183,6 +183,9 @@ $(function() {
     evt.preventDefault();
   });
   
-  $('#save-lesson').click(saveLesson);
+  $('#save-lesson').click(function(evt) {
+    saveLesson();
+    evt.preventDefault();
+  });
   
 });
