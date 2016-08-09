@@ -7,7 +7,8 @@ $(function() {
   }
   
   var id = getLessonID();
-  var questions = []
+  var questions = [];
+  var calcs = [];
   
   var $tabs = $('.tabs'),
       $questionContainer = $('.question-container');
@@ -39,14 +40,21 @@ $(function() {
                 var calcOpts = JSON.parse(data.options);
                 var calc = Desmos.Calculator(calcElt, calcOpts);
                 calc.setState(data.state);
+                calcs.push(calc);
               });
           }
         });
         // Initialize tabs
-        $tabs.tabs();
+        $tabs.tabs({onShow: function() {
+          calcs.forEach(function(elt) {
+            elt.resize();
+          });
+        }});
         $('.progress').remove();
       });
   }
   loadLesson();
+  
+
       
 });
