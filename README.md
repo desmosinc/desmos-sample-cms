@@ -13,25 +13,20 @@ Installing
 ```bash
 brew update && brew install node
 ```
-
 2. Make sure you have MongoDB installed from the [download page](https://www.mongodb.com/download-center), or via Homebrew:
 ```bash
 brew install mongodb
 ```
-
 3. Set up your `data` directory and get MongoDB running by [following the official instructions](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#create-the-data-directory).
-
 4. Clone the repository:
 ```bash
 git clone https://github.com/desmosinc/desmos-sample-cms.git
 ```
-
 5. Install the project dependencies:
 ```bash
 cd desmos-sample-cms
 npm install
 ```
-
 6. Change `app.js` to point to whatever local db name you want to use. Otherwise it will create/use one called `cms`:
 ```javascript
 // app.js
@@ -43,7 +38,6 @@ app.use(function(req, res, next) {
   next();
 });
 ```
-
 7. TODO: Run the script to prepopulate the db with sample data?
 
 Running the App Locally
