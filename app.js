@@ -27,7 +27,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Database
-var db = monk('localhost:27017/cms');
+var db = monk('localhost:27017/cms'); // change this to whatever local db you want to use
 app.use(function(req, res, next) {
   req.db = db;
   next();
