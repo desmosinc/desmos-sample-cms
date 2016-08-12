@@ -3,13 +3,9 @@ Cool Management System (CMS)
 
 This is a sample application to demonstrate using the Desmos API to create a content management system for authoring graphs and embedding them in lesson content.
 
----
-
 About
 -----
 This is a [Node](https://nodejs.org/) application built with the [Express](https://expressjs.com) framework using [Jade](http://jade-lang.com/) templates and backed by a local [MongoDB](https://www.mongodb.com/) database.
-
----
 
 Installing
 ----------
@@ -18,25 +14,25 @@ Installing
 brew update && brew install node
 ```
 
-1. Make sure you have MongoDB installed from the [download page](https://www.mongodb.com/download-center), or via Homebrew:
+2. Make sure you have MongoDB installed from the [download page](https://www.mongodb.com/download-center), or via Homebrew:
 ```bash
 brew install mongodb
 ```
 
-1. Set up your `data` directory and get MongoDB running by [following the official instructions](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#create-the-data-directory).
+3. Set up your `data` directory and get MongoDB running by [following the official instructions](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#create-the-data-directory).
 
-1. Clone the repository:
+4. Clone the repository:
 ```bash
 git clone https://github.com/desmosinc/desmos-sample-cms.git
 ```
 
-1. Install the project dependencies:
+5. Install the project dependencies:
 ```bash
 cd desmos-sample-cms
 npm install
 ```
 
-1. Change `app.js` to point to whatever local db name you want to use. Otherwise it will create/use one called `cms`:
+6. Change `app.js` to point to whatever local db name you want to use. Otherwise it will create/use one called `cms`:
 ```javascript
 // app.js
 
@@ -48,9 +44,7 @@ app.use(function(req, res, next) {
 });
 ```
 
-1. TODO: Run the script to prepopulate the db with sample data?
-
----
+7. TODO: Run the script to prepopulate the db with sample data?
 
 Running the App Locally
 -----------------------
@@ -64,8 +58,6 @@ cd desmos-sample-cms
 npm start
 ```
 Navigate to http://localhost:3000/ and you should be greeted by the home page.
-
----
 
 Navigating the App
 ------------------
@@ -85,15 +77,11 @@ Once you save a lesson, you're redirected to the edit page (which is basically t
 
 If you click the "Preview" link in a lesson card, you'll be directed to a page that shows what the lesson content might look like to an end user. Question titles and text appear on the left, and the associated graphs (if any) appear on the right. You can navigate between questions by clicking the navbar immediately above the content.
 
----
-
 Exploring the Code
 ------------------
 Almost everything related to the `graph` resource lives in a subdirectory called `graphs/`, and most code related to the `lesson` resource exists in a `lessons/` subdirectory. In both cases, files (frontend) or routes (backend) correspond to actions available for that resource.
 
 In the case of creating a new graph, for instance, the view lives in `views/graphs/new.jade`, and the frontend code lives in `public/javascripts/graphs/new.js`. On the server side, `routes/graphs.js` contains a `/graphs/new` route for displaying the graph creation page, and a `/graphs/api/create` route for saving a new graph to the database. A good way to get a sense of where the Demsos API is being used is to look in the `graphs` files and directories.
-
----
 
 Using the Desmos API
 --------------------
@@ -282,8 +270,6 @@ $(function() {
 ```
 
 A quick note on getting and setting states. Even though `Calculator.getState()` returns a regular JavaScript object, the object itself should be considered opaque. I.e., it shouldn't be manipulated or parsed other than to (de)serialize it for database operations or passing around to other calculator instances. The details of what's returned aren't guaranteed to be stable over time. The only guarantee is that the return value of `Calculator.getState()` will always be a suitable input for `Calculator.setState()`.
-
----
 
 Final Notes
 -----------
