@@ -27,12 +27,12 @@ brew install mongodb
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/desmosinc/REPOSITORYTK
+git clone https://github.com/desmosinc/desmos-sample-cms.git
 ```
 
 1. Install the project dependencies:
 ```bash
-cd desmos-cms
+cd desmos-sample-cms
 npm install
 ```
 
@@ -60,7 +60,7 @@ mongod
 ```
 In another terminal, launch the app server from inside the project root:
 ```bash
-cd desmos-cms
+cd desmos-sample-cms
 npm start
 ```
 Navigate to http://localhost:3000/ and you should be greeted by the home page.
