@@ -36,6 +36,18 @@ cd desmos-cms
 npm install
 ```
 
+1. Change `app.js` to point to whatever local db name you want to use. Otherwise it will create/use one called `cms`:
+```javascript
+// app.js
+
+// Database
+var db = monk('localhost:27017/cms'); // change this to whatever local db you want to use
+app.use(function(req, res, next) {
+  req.db = db;
+  next();
+});
+```
+
 1. TODO: Run the script to prepopulate the db with sample data?
 
 ---

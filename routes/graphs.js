@@ -59,7 +59,7 @@ router.get('/api/:id', function(req, res) {
       res.send(doc);
     })
     .catch(function(err) {
-      res.send(err;)
+      res.send(err);
     })
     .then(function() {
       db.close();
