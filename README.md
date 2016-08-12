@@ -234,6 +234,12 @@ router.get('/:id', function(req, res) {
   collection.findOne({_id: objID})
     .then(function(doc) {
       res.render('graphs/show', {graph: doc});
+    })
+    .catch(function(err) {
+      res.send(err);
+    })
+    .then(function() {
+      db.close();
     });
 });
 ```
