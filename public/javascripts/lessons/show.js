@@ -26,27 +26,28 @@ $(function() {
     $.get('/lessons/api/' + id)
       .done(function(data) {
         var questionObj = JSON.parse(data.questions);
-        // $lessonTitle.val(data.title);
         for (var q in questionObj) {
           var question = questionObj[q];
           questions[question.number - 1] = question;
         }
         questions.forEach(function(elt, ind, arr) {
           insertQuestion(elt.number, elt.title, elt.text);
+          // If a question has an associated graph...
           if (elt.graphID !== '') {
-            $.get('/graphs/api/' + elt.graphID)
+            $.get('/graphs/api/' + elt.graphID) // fetch the graph from the db
               .done(function(data) {
-                var calcElt = $('#calculator' + elt.number)[0];
-                var calcOpts = JSON.parse(data.options);
-                var calc = Desmos.Calculator(calcElt, calcOpts);
-                calc.setState(data.state);
-                calcs.push(calc);
+                var calcElt = $('#calculator' + elt.number)[0]; // reference to the containing element
+                var calcOpts = JSON.parse(data.options); // parse the constructor options
+                var calc = Desmos.Calculator(calcElt, calcOpts); // instantiate a calculator w/ options
+                calc.setState(data.state); // set the calculator state
+                calcs.push(calc); // keep a list of all the calculators on the page
               });
           }
         });
         // Initialize tabs
         $tabs.tabs({onShow: function() {
           calcs.forEach(function(elt) {
+            // TODO: Gross
             elt.resize();
           });
         }});

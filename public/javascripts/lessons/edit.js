@@ -49,6 +49,7 @@ $(function() {
     $newQuestion.find('h4').text(this.title);
     $newQuestion.find('p').text(this.text);
     if (this.thumbnail !== '') {
+      // Use the data uri from the db (if it exists) to set the thumb image
       $newQuestion.find('img').attr('src', this.thumbnail);
     }
     $newQuestion.removeClass('question-template');
@@ -124,6 +125,8 @@ $(function() {
     data.forEach(function(elt, ind, arr) {
       var $item = $('<li class="collection-item avatar graph-item valign-wrapper"></li>');
       $item.append($('<span class="title valign">' + elt.title + '</span>'));
+      // Use the data uri returned from Calculator.screenshot() to set the thumb image
+      // Note that only graphs marked "public" will appear here
       $item.append($('<img src=' + elt.thumbnail + '>'));
       $item.click(function() {
         $('.graph-preview').eq(currentQuestion).attr('src', elt.thumbnail);
