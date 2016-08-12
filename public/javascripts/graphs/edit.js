@@ -34,11 +34,15 @@ $(function() {
       
   $title.val(graphData.title);
   $public.prop('checked', graphData.public === 'true');
-      
+
+  // Get a snapshot of the calculator state
   function getState() {
     return JSON.stringify(calc.getState());
   }
   
+  // Get the options for embedding
+  // These will be passed into the constructor for the embedded calculator
+  // that will display this graph state
   function getOptions() {
     return JSON.stringify({
       keypad: $keypad.prop('checked'),
@@ -61,9 +65,9 @@ $(function() {
       return;
     }
     
-    var state = getState();
-    var options = getOptions();
-    var thumb = calc.screenshot({
+    var state = getState(); // the calculator state
+    var options = getOptions(); // the constructor options
+    var thumb = calc.screenshot({ // the thumbnail uri
       width: 500,
       height: 300,
       targetPixelRatio: 1
