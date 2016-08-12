@@ -12,14 +12,14 @@ block content
                 .card.small.hoverable.teal.lighten-2
                   .card-image
                     img.index-image(src=graph.thumbnail)
+                    if (graph.public === 'true')
+                      span.badge.pink.accent-2.white-text Public
                   .card-content.white-text
                     span.card-title.truncate= graph.title
                   .card-action
                     a(href='graphs/#{graph._id}') Preview
                     a(href='graphs/edit/#{graph._id}') Edit
                     a(href='graphs/api/delete/#{graph._id}') Delete
-                    if (graph.public === 'true')
-                      span.badge.white.teal-text Public
                     
   .bottom-right.fixed-action-btn
     a.btn-floating.btn-large.waves-effect.waves-light.pink.accent-2(href='/graphs/new')
