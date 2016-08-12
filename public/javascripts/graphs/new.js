@@ -22,7 +22,7 @@ $(function() {
       $lockViewport = $('#lockViewport'),
       $expressionsCollapsed = $('#expressionsCollapsed');
       
-  Get a snapshot of the calculator state
+  // Get a snapshot of the calculator state
   function getState() {
     return JSON.stringify(calc.getState());
   }
