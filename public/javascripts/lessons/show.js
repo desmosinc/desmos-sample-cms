@@ -40,14 +40,15 @@ $(function() {
                 var calcOpts = JSON.parse(data.options); // parse the constructor options
                 var calc = Desmos.Calculator(calcElt, calcOpts); // instantiate a calculator w/ options
                 calc.setState(data.state); // set the calculator state
-                calcs.push(calc); // keep a list of all the calculators on the page
+                calcs.push(calc); // keep track of all the calculators on the page
               });
           }
         });
         // Initialize tabs
         $tabs.tabs({onShow: function() {
           calcs.forEach(function(elt) {
-            // TODO: Gross
+            // Let the calculators know one of them is visible and should resize itself
+            // to fit the containing <div> properly
             elt.resize();
           });
         }});
