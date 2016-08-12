@@ -57,7 +57,7 @@ In another terminal, launch the app server from inside the project root:
 cd desmos-sample-cms
 npm start
 ```
-Navigate to http://localhost:3000/ and you should be greeted by the home page.
+Navigate to [http://localhost:3000/] and you should be greeted by the home page.
 
 Navigating the App
 ------------------
