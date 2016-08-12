@@ -17,7 +17,7 @@ block content
                   .card-action
                     a(href='graphs/#{graph._id}') Preview
                     a(href='graphs/edit/#{graph._id}') Edit
-                    a(href='graphs/delete/#{graph._id}') Delete
+                    a(href='graphs/api/delete/#{graph._id}') Delete
                     if (graph.public === 'true')
                       span.badge.white.teal-text Public
                     

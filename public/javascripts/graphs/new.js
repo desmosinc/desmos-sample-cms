@@ -56,7 +56,7 @@ $(function() {
       targetPixelRatio: 1
     });
     
-    $.post('/graphs/create', {
+    $.post('/graphs/api/create', {
       state: state,
       options: options,
       title: $title.val(),

@@ -79,7 +79,7 @@ Exploring the Code
 ------------------
 Almost everything related to the `graph` resource lives in a subdirectory called `graphs/`, and most code related to the `lesson` resource exists in a `lessons/` subdirectory. In both cases, files (frontend) or routes (backend) correspond to actions available for that resource.
 
-In the case of creating a new graph, for instance, the view lives in `views/graphs/new.jade`, and the frontend code lives in `public/javascripts/graphs/new.js`. On the server side, `routes/graphs.js` contains a `/graphs/new` route for displaying the graph creation page, and a `/graphs/create` route for saving a new graph to the database. A good way to get a sense of where the Demsos API is being used is to look in the `graphs` files and directories.
+In the case of creating a new graph, for instance, the view lives in `views/graphs/new.jade`, and the frontend code lives in `public/javascripts/graphs/new.js`. On the server side, `routes/graphs.js` contains a `/graphs/new` route for displaying the graph creation page, and a `/graphs/api/create` route for saving a new graph to the database. A good way to get a sense of where the Demsos API is being used is to look in the `graphs` files and directories.
 
 ---
 
@@ -189,7 +189,7 @@ To persist the graph to the database with the metadata such as title, options, a
 ```javascript
 // public/javascripts/graphs/new.js
 
-$.post('/graphs/create', {
+$.post('/graphs/api/create', {
   state: state,
   options: options,
   title: $title.val(),
@@ -198,13 +198,13 @@ $.post('/graphs/create', {
 });
 ```
 
-On the backend, the `graphs/create` route handles the saving:
+On the backend, the `graphs/api/create` route handles the saving:
 
 ```javascript
 // routes/graphs.js
 
 // Save a new graph to the database
-router.post('/create', function(req, res) {
+router.post('/api/create', function(req, res) {
   var db = req.db;
   var collection = db.get('graphs');
   collection.insert(req.body)

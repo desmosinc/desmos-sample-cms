@@ -100,7 +100,7 @@ $(function() {
   };
   
   // Populate the graphs modal
-  $.get('/graphs/list')
+  $.get('/graphs/api/list')
     .done(function(data) {
       populateGraphs(data);
     });
@@ -141,7 +141,7 @@ $(function() {
       return;
     }
     var questionObject = serializeQuestions();
-    $.post('/lessons/create', {
+    $.post('/lessons/api/create', {
       title: title,
       numQuestions: questions.length,
       questions: questionObject,
