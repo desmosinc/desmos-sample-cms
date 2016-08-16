@@ -44,8 +44,6 @@ app.use(function(req, res, next) {
 });
 ```
 
-- TODO: Run the script to prepopulate the db with sample data?
-
 Running the App Locally
 -----------------------
 The app needs a live connection to the database in order to run, so make sure you have a MongoDB process running:
@@ -64,14 +62,14 @@ Navigating the App
 The project consists of two resources, `lessons` and `graphs`, that can be created, viewed, edited, and deleted. A `lesson` is made up of questions that can optionally have an associated `graph` embedded. There is only a single user who owns everything (Sue Doe :) ).
 
 ### Authoring and Previewing Graphs
-To create a new graph, you can begin by clicking the `Graphs` link in the navbar and then the `+` icon in the lower right, or by navigating to `/graphs/new/`. Once you've created a graph, set its title and embedding options by clicking the menu icon in the lower right and checking the appropriate options in the sidebar (a title is requred for saving). Note that only "public" graphs show up as being available to embed in questions in the lesson authoring interface , so check the "Publish" input if you want to experiment with that feature. Finally, click the `save` button.
+To create a new graph, you can begin by clicking the `Graphs` link in the navbar and then the `+` icon in the lower right, or by navigating to `/graphs/new/`. Once you've created a graph, set its title and embedding options by clicking the menu icon in the lower right and checking the appropriate options in the sidebar (a title is required for saving). Finally, click the `save` button.
 
 On a successful save, you will be redirected to the `edit` page for the newly created graph. You can continue to make and save changes that will be persisted to the database. If you go back to the `/graphs` page, you should see a card with your graph's thumbnail and title.
 
 You can inspect the graph as it will appear in its embedded form by clicking the "Preview" link in the graph's card. For instance, if you chose to lock the viewport when you saved the graph, you will not be able to pan or zoom the viewport on the preview page. Click the icon in the lower right to return to the editing view at any time.
 
 ### Authoring and Previewing Lessons
-Lesson authoring works much the same way as graph authoring. Create a new lesson by clicking the `Lessons` link in the navbar and the `+` icon in the lower right, or by navigating to `/lessons/new`. Enter a title and add a new question with its own title and text content. Once added, you'll see a thumbnail on the left side of the question with another `+` icon. If you click that, you'll see a list of saved graphs that you've marked "public". Clicking on an item of the list attaches a graph to that question, and you should see your graph's thumbnail in the question card.
+Lesson authoring works much the same way as graph authoring. Create a new lesson by clicking the `Lessons` link in the navbar and the `+` icon in the lower right, or by navigating to `/lessons/new`. Enter a title and add a new question with its own title and text content. Once added, you'll see a thumbnail on the left side of the question with another `+` icon. If you click that, you'll see a list of saved graphs that you've created. Clicking on an item of the list attaches a graph to that question, and you should see your graph's thumbnail in the question card.
 
 Once you save a lesson, you're redirected to the edit page (which is basically the same interface). If you go back to the `/lessons` pages, you'll see a card with your new lesson's title, number of questions, and creation date.
 
@@ -141,7 +139,6 @@ The application saves the list of desired embed options via a menu with checkbox
 // Cache some selectors for getting metadata and graph options
 // Each selector points to an <input> in the menu
 var $title = $('#title'),
-    $public = $('#public'),
     $keypad = $('#keypad'),
     $graphpaper = $('#graphpaper'),
     $expressions = $('#expressions'),
@@ -193,7 +190,6 @@ $.post('/graphs/api/create', {
   state: state,
   options: options,
   title: $title.val(),
-  public: $public.prop('checked'),
   thumbnail: thumb
 });
 ```
@@ -213,9 +209,6 @@ router.post('/api/create', function(req, res) {
     })
     .catch(function(err) {
       res.send(err);
-    })
-    .then(function() {
-      db.close();
     });
 });
 ```
@@ -229,14 +222,14 @@ Here are the total contents of `public/javascripts/graphs/show.js`, used to prev
 // public/javascripts/graphs/show.js
 
 $(function() {
-  
+
   function getGraphID() {
     var fullPath = location.pathname;
     id = fullPath.substr(fullPath.lastIndexOf('/') + 1);
     return id;
   }
   var id = getGraphID();
-  
+
   var elt = $('#calculator')[0];
 
   // Fetch the graph data from the db
@@ -245,11 +238,11 @@ $(function() {
       var options = JSON.parse(data.options); // the saved options from the author
       var calc = Desmos.Calculator(elt, options); // instantiate a calculator with those options
       $('.progress').remove();
-      
+
       calc.setState(data.state); // set the state of the current calculator to the saved state
       $('.btn-floating').attr('href', '/graphs/edit/' + id); // Hook up the edit button to the correct route
     });
-  
+
 });
 ```
 
