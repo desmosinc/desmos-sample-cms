@@ -9,7 +9,6 @@ $(function() {
   
   // Cache some selectors for getting metadata and graph options
   var $title = $('#title'),
-      $public = $('#public'),
       $keypad = $('#keypad'),
       $graphpaper = $('#graphpaper'),
       $expressions = $('#expressions'),
@@ -64,7 +63,6 @@ $(function() {
       state: state,
       options: options,
       title: $title.val(),
-      public: $public.prop('checked'),
       thumbnail: thumb
     })
       .done(function(data) {

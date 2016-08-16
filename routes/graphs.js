@@ -24,7 +24,7 @@ router.get('/new', function(req, res, next) {
 router.get('/api/list', function(req, res) {
   var db = req.db;
   collection = db.get('graphs');
-  collection.find({'public': 'true'})
+  collection.find({})
     .then(function(docs) {
       res.json(docs);
     })

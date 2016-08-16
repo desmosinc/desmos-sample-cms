@@ -1,15 +1,14 @@
 $(function() {
-  
+
   function getGraphID() {
     var fullPath = location.pathname;
     id = fullPath.substr(fullPath.lastIndexOf('/') + 1);
     return id;
   }
   var id = getGraphID();
-  
+
   // Cache some selectors for getting metadata and graph options
   var $title = $('#title'),
-      $public = $('#public'),
       $keypad = $('#keypad'),
       $graphpaper = $('#graphpaper'),
       $expressions = $('#expressions'),
@@ -21,19 +20,19 @@ $(function() {
       $border = $('#border'),
       $lockViewport = $('#lockViewport'),
       $expressionsCollapsed = $('#expressionsCollapsed');
-  
+
   // Instantiate a new calculator
   var elt = $('#calculator')[0];
   var calc = Desmos.Calculator(elt, {
     administerSecretFolders: true
   });
-  
+
   // Fetch the graph data from the db
   $.get('/graphs/api/' + id)
     .done(function(data) {
       calc.setState(data.state);
       $('.progress').remove();
-      
+
       // Graph options to populate the checkboxes correctly
       var options = JSON.parse(data.options);
       for (var prop in options) {
@@ -41,16 +40,15 @@ $(function() {
           $('#' + prop).prop('checked', options[prop]);
         }
       }
-      
+
       $title.val(data.title);
-      $public.prop('checked', data.public === 'true');
     });
-      
+
   // Get a snapshot of the calculator state
   function getState() {
     return JSON.stringify(calc.getState());
   }
-  
+
   // Get the options for embedding
   // These will be passed into the constructor for the embedded calculator
   // that will display this graph state
@@ -69,13 +67,13 @@ $(function() {
       expressionsCollapsed: $expressionsCollapsed.prop('checked')
     });
   }
-  
+
   function saveGraph() {
     if ($title.val() === '') {
       Materialize.toast('You need a title!', 2000);
       return;
     }
-    
+
     var state = getState(); // the calculator state
     var options = getOptions(); // the constructor options
     var thumb = calc.screenshot({ // the thumbnail uri
@@ -83,12 +81,11 @@ $(function() {
       height: 300,
       targetPixelRatio: 1
     });
-    
+
     $.post('/graphs/api/update/' + graphData._id, {
       state: state,
       options: options,
       title: $title.val(),
-      public: $public.prop('checked'),
       thumbnail: thumb
     })
       .done(function() {
@@ -98,18 +95,18 @@ $(function() {
         toast('Error saving...');
       });
   };
-    
+
   // Event handlers
   var $settingsButton = $('#settings-button');
   $settingsButton.sideNav({
     menuWidth: 500,
     edge: 'right'
   });
-  
+
   $('#save-button').click(function(evt) {
     $settingsButton.sideNav('hide');
     saveGraph();
     evt.preventDefault();
   });
-  
+
 });
