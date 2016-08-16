@@ -82,7 +82,7 @@ $(function() {
       targetPixelRatio: 1
     });
 
-    $.post('/graphs/api/update/' + graphData._id, {
+    $.post('/graphs/api/update/' + id, {
       state: state,
       options: options,
       title: $title.val(),
