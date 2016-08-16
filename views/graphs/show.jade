@@ -6,10 +6,8 @@ block content
       .indeterminate.pink.accent-2
       
   .bottom-right.fixed-action-btn
-    a.btn-floating.btn-large.waves-effect.waves-light.pink.accent-2(href='/graphs/edit/#{graph._id}')
+    a.btn-floating.btn-large.waves-effect.waves-light.pink.accent-2(href='#')
       i.material-icons edit
 
   script(src='https://www.desmos.com/api/v0.7/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6')
-  script(type='text/javascript').
-    var graphData = !{JSON.stringify(graph)};
   script(src='/javascripts/graphs/show.js')

@@ -75,7 +75,7 @@ Lesson authoring works much the same way as graph authoring. Create a new lesson
 
 Once you save a lesson, you're redirected to the edit page (which is basically the same interface). If you go back to the `/lessons` pages, you'll see a card with your new lesson's title, number of questions, and creation date.
 
-If you click the "Preview" link in a lesson card, you'll be directed to a page that shows what the lesson content might look like to an end user. Question titles and text appear on the left, and the associated graphs (if any) appear on the right. You can navigate between questions by clicking the navbar immediately above the content.
+If you click the "Preview" link in a lesson card, you'll be directed to a page that shows what the lesson content might look like to an end user. Question titles and text appear on the left, and the associated graphs (if any) appear on the right. You can navigate between questions by clicking the navbar immediately above the content. Click the icon in the lower right to return to the editing view at any time.
 
 Exploring the Code
 ------------------
@@ -221,56 +221,34 @@ router.post('/api/create', function(req, res) {
 ```
 
 ### Setting a Graph State
-Once a graph has been saved, it's possible to preview it with the same embed options that were saved at creation time. Navigating to `graphs/:id` triggers the following code:
+Once a graph has been saved, it's possible to preview it with the same embed options that were saved at creation time. Navigating to `graphs/:id` shows the graph in its final form.
 
-```javascript
-// routes/graphs.js
-
-// Show a particular graph
-router.get('/:id', function(req, res) {
-  var db = req.db;
-  var collection = db.get('graphs');
-  var objID = monk.id(req.params.id);
-  collection.findOne({_id: objID})
-    .then(function(doc) {
-      res.render('graphs/show', {graph: doc});
-    })
-    .catch(function(err) {
-      res.send(err);
-    })
-    .then(function() {
-      db.close();
-    });
-});
-```
-
-Notice that the second argument to `res.render()` means that a `graph` property will be exposed to the view when it's rendered. To make the data accessible to the frontend JavaScript, an extra `<script>` tag is used to create a `graphData` property on the `window` object whose value is the stringified data:
-
-```jade
-//- views/graphs/show.jade
-
-script(src='https://www.desmos.com/api/v0.7/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6')
-script(type='text/javascript').
-  var graphData = !{JSON.stringify(graph)};
-script(src='/javascripts/graphs/show.js')
-```
-
-N.B. that the `!{...}` notation in Jade means that the data will be unescaped, which leaves open the possibility of code injection. In production, it would be safer to make an AJAX call from the frontend code and then deal with checks on the returned result there. This technique is just used for simplicity in the demo.
-
-Here are the total contents of `public/javascripts/graphs/show.js` used to preview the graph with the desired embed options. `Calculator.setState()` sets the calculator to the state that was captured previously by the `Calculator.getState()` call.
+Here are the total contents of `public/javascripts/graphs/show.js`, used to preview the graph. `Calculator.setState()` sets the calculator to the state that was captured previously by the `Calculator.getState()` call.
 
 ```javascript
 // public/javascripts/graphs/show.js
 
 $(function() {
   
-  // graphData contains the object returned from the database and passed to the view by the server
-  var elt = $('#calculator')[0];
-  var options = JSON.parse(graphData.options);
-  var calc = Desmos.Calculator(elt, options);
-  $('.progress').remove();
+  function getGraphID() {
+    var fullPath = location.pathname;
+    id = fullPath.substr(fullPath.lastIndexOf('/') + 1);
+    return id;
+  }
+  var id = getGraphID();
   
-  calc.setState(graphData.state);
+  var elt = $('#calculator')[0];
+
+  // Fetch the graph data from the db
+  $.get('/graphs/api/' + id)
+    .done(function(data) {
+      var options = JSON.parse(data.options); // the saved options from the author
+      var calc = Desmos.Calculator(elt, options); // instantiate a calculator with those options
+      $('.progress').remove();
+      
+      calc.setState(data.state); // set the state of the current calculator to the saved state
+      $('.btn-floating').attr('href', '/graphs/edit/' + id); // Hook up the edit button to the correct route
+    });
   
 });
 ```

@@ -53,6 +53,7 @@ $(function() {
           });
         }});
         $('.progress').remove();
+        $('.btn-floating').attr('href', '/lessons/edit/' + id);
       });
   }
   loadLesson();

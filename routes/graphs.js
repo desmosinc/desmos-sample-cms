@@ -56,7 +56,7 @@ router.get('/api/:id', function(req, res) {
   var objID = monk.id(req.params.id);
   collection.findOne({_id: objID})
     .then(function(doc) {
-      res.send(doc);
+      res.json(doc);
     })
     .catch(function(err) {
       res.send(err);
@@ -119,19 +119,7 @@ router.get('/api/delete/:id', function(req, res) {
 
 // Show a particular graph
 router.get('/:id', function(req, res) {
-  var db = req.db;
-  var collection = db.get('graphs');
-  var objID = monk.id(req.params.id);
-  collection.findOne({_id: objID})
-    .then(function(doc) {
-      res.render('graphs/show', {graph: doc});
-    })
-    .catch(function(err) {
-      res.send(err);
-    })
-    .then(function() {
-      db.close();
-    });
+  res.render('graphs/show');
 });
 
 module.exports = router;

@@ -1,21 +1,11 @@
 $(function() {
   
-  // Instantiate a new calculator with the correct options
-  var elt = $('#calculator')[0];
-  var calc = Desmos.Calculator(elt, {
-    administerSecretFolders: true
-  });
-  calc.setState(graphData.state);
-  $('.progress').remove();
-  
-  // Graph options to populate the checkboxes correctly
-  var options = JSON.parse(graphData.options);
-  
-  for (var prop in options) {
-    if (options.hasOwnProperty(prop)) {
-      $('#' + prop).prop('checked', options[prop]);
-    }
+  function getGraphID() {
+    var fullPath = location.pathname;
+    id = fullPath.substr(fullPath.lastIndexOf('/') + 1);
+    return id;
   }
+  var id = getGraphID();
   
   // Cache some selectors for getting metadata and graph options
   var $title = $('#title'),
@@ -31,10 +21,31 @@ $(function() {
       $border = $('#border'),
       $lockViewport = $('#lockViewport'),
       $expressionsCollapsed = $('#expressionsCollapsed');
+  
+  // Instantiate a new calculator
+  var elt = $('#calculator')[0];
+  var calc = Desmos.Calculator(elt, {
+    administerSecretFolders: true
+  });
+  
+  // Fetch the graph data from the db
+  $.get('/graphs/api/' + id)
+    .done(function(data) {
+      calc.setState(data.state);
+      $('.progress').remove();
       
-  $title.val(graphData.title);
-  $public.prop('checked', graphData.public === 'true');
-
+      // Graph options to populate the checkboxes correctly
+      var options = JSON.parse(data.options);
+      for (var prop in options) {
+        if (options.hasOwnProperty(prop)) {
+          $('#' + prop).prop('checked', options[prop]);
+        }
+      }
+      
+      $title.val(data.title);
+      $public.prop('checked', data.public === 'true');
+    });
+      
   // Get a snapshot of the calculator state
   function getState() {
     return JSON.stringify(calc.getState());
