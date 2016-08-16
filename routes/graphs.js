@@ -12,9 +12,6 @@ router.get('/', function(req, res) {
     })
     .catch(function(err) {
       res.send(err);
-    })
-    .then(function() {
-      db.close();
     });
 });
 
@@ -30,6 +27,9 @@ router.get('/api/list', function(req, res) {
   collection.find({'public': 'true'})
     .then(function(docs) {
       res.json(docs);
+    })
+    .catch(function(err) {
+      res.send(err);
     });
 });
 
@@ -43,9 +43,6 @@ router.post('/api/create', function(req, res, next) {
     })
     .catch(function(err) {
       res.send(err);
-    })
-    .then(function() {
-      db.close();
     });
 });
 
@@ -60,9 +57,6 @@ router.get('/api/:id', function(req, res) {
     })
     .catch(function(err) {
       res.send(err);
-    })
-    .then(function() {
-      db.close();
     });
 });
 
@@ -77,9 +71,6 @@ router.post('/api/update/:id', function(req, res) {
     })
     .catch(function(err) {
       res.send(err);
-    })
-    .then(function() {
-      db.close();
     });
 });
 
@@ -94,9 +85,6 @@ router.get('/edit/:id', function(req, res) {
     })
     .catch(function(err) {
       res.send(err);
-    })
-    .then(function() {
-      db.close();
     });
 });
 
@@ -111,9 +99,6 @@ router.get('/api/delete/:id', function(req, res) {
     })
     .catch(function(err) {
       res.send(err);
-    })
-    .then(function() {
-      db.close();
     });
 });
 

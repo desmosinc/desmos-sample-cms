@@ -12,9 +12,6 @@ router.get('/', function(req, res) {
     })
     .catch(function(err) {
       res.send(err);
-    })
-    .then(function() {
-      db.close();
     });
 });
 
@@ -33,9 +30,6 @@ router.post('/api/create', function(req, res) {
     })
     .catch(function(err) {
       res.send(err);
-    })
-    .then(function() {
-      db.close();
     });
 });
 
@@ -55,9 +49,6 @@ router.post('/api/update/:id', function(req, res) {
     })
     .catch(function(err) {
       res.send(err);
-    })
-    .then(function() {
-      db.close();
     });
 });
 
@@ -72,9 +63,6 @@ router.get('/api/delete/:id', function(req, res) {
     })
     .catch(function(err) {
       res.send(err);
-    })
-    .then(function() {
-      db.close();
     });
 });
 
@@ -89,9 +77,6 @@ router.get('/api/:id', function(req, res) {
     })
     .catch(function(err) {
       res.send(err);
-    })
-    .then(function() {
-      db.close();
     });
 });
 
@@ -106,9 +91,6 @@ router.get('/:id', function(req, res) {
     })
     .catch(function(err) {
       res.send(err);
-    })
-    .then(function() {
-      db.close();
     });
 });
 
